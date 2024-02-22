@@ -1,29 +1,81 @@
 import { useState } from 'react';
 
 export default function Calculator() {
-    const [firstNum, setFirstNum] = useState(0);
-    const [secondNum, setSecondNum] = useState(0);
+    const [firstNum, setFirstNum] = useState(false);
+    const [secondNum, setSecondNum] = useState(false);
     const [result, setResult] = useState(0);
+    const [error, setError] = useState({
+        first : false,
+        second : false
+    })
+
+    //add
     const addHandler = () => {
-        setResult((+firstNum) + (+secondNum));
+        if(!firstNum){
+            setError(err =>({...err, first : true}));
+            setResult(0);
+        } 
+        if(!secondNum) {
+            setError(err =>({...err, second : true}));
+            setResult(0);
+        }
+        if(firstNum && secondNum ) {
+            setResult((+firstNum) + (+secondNum));
+        }
     }
+
+    //sub
     const substractHandler = () => {
-        if((+firstNum) >= (+secondNum)) {
-            setResult(firstNum - secondNum);
-        } else {
-            setResult("First Number must greater than Second Number");
+        if(!firstNum){
+            setError(err =>({...err, first : true}));
+            setResult(0);
+        } 
+        if(!secondNum) {
+            setError(err =>({...err, second : true}));
+            setResult(0);
+        }
+        if(firstNum && secondNum ) {
+            if((+firstNum) >= (+secondNum)) {
+                setResult("" +firstNum - secondNum);
+            } else {
+                setResult("First Number must greater than Second Number");
+            }
         }
     }
+
+    //multiple
     const multipleHandler = () => {
-        setResult(firstNum * secondNum);
-    }
-    const divideHandler = () => {
-        if(secondNum != 0)
-        {
-            setResult(firstNum/secondNum);
-        } else {
-            setResult("Divider not be Zero");
+        if(!firstNum){
+            setError(err =>({...err, first : true}));
+            setResult(0);
+        } 
+        if(!secondNum) {
+            setError(err =>({...err, second : true}));
+            setResult(0);
         }
+        if(firstNum && secondNum ) {
+            setResult(firstNum * secondNum);
+        }
+    }
+
+    //div
+    const divideHandler = () => {
+            if(!firstNum){
+                setError(err =>({...err, first : true}));
+                setResult(0);
+            } 
+            if(!secondNum) {
+                setError(err =>({...err, second : true}));
+                setResult(0);
+            }
+            if(firstNum && secondNum ) {
+                if(+secondNum !== 0)
+                {
+                    setResult(firstNum/secondNum);
+                } else {
+                    setResult("Divider not be Zero");
+                }
+            }
         
     }
   return (
@@ -37,8 +89,12 @@ export default function Calculator() {
                      id="exampleInputEmail1" 
                      aria-describedby="emailHelp"
                      value={firstNum}
-                     onChange={(e)=> setFirstNum(e.target.value)}
+                     onChange={(e)=> {
+                        setFirstNum(e.target.value)
+                        setError({...error, first : false})
+                    }}
                      />
+                <small className="text-danger">{error.first ?"First Number is required" : ""}</small>
             </div>
             <div className="mb-3">
               <label  className="form-label">Second Number</label>
@@ -46,8 +102,12 @@ export default function Calculator() {
                      className="form-control" 
                      id="exampleInputPassword1"
                      value={secondNum}
-                     onChange={(e)=> setSecondNum(e.target.value)}
+                     onChange={(e)=> {
+                        setSecondNum(e.target.value);
+                        setError({...error, second : false})
+                     }}
                      />
+                <small className="text-danger">{error.second ?"Second Number is required" : ""}</small>
             </div>
             <div className="d-flex justify-content-around">
             <button type="button" 
