@@ -8,7 +8,7 @@ export default function Calculator() {
         setResult((+firstNum) + (+secondNum));
     }
     const substractHandler = () => {
-        if(firstNum > secondNum) {
+        if((+firstNum) >= (+secondNum)) {
             setResult(firstNum - secondNum);
         } else {
             setResult("First Number must greater than Second Number");
