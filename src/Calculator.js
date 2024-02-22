@@ -41,7 +41,7 @@ export default function Calculator() {
                      />
             </div>
             <div className="mb-3">
-              <label  className="form-label">second Number</label>
+              <label  className="form-label">Second Number</label>
               <input type="number" 
                      className="form-control" 
                      id="exampleInputPassword1"
