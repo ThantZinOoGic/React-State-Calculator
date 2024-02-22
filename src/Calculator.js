@@ -7,6 +7,25 @@ export default function Calculator() {
     const addHandler = () => {
         setResult((+firstNum) + (+secondNum));
     }
+    const substractHandler = () => {
+        if(firstNum > secondNum) {
+            setResult(firstNum - secondNum);
+        } else {
+            setResult("First Number must greater than Second Number");
+        }
+    }
+    const multipleHandler = () => {
+        setResult(firstNum * secondNum);
+    }
+    const divideHandler = () => {
+        if(secondNum != 0)
+        {
+            setResult(firstNum/secondNum);
+        } else {
+            setResult("Divider not be Zero");
+        }
+        
+    }
   return (
     <div className='col-4 mx-auto card p-5 shadow-sm'>
         <h3 className='text-center'>Sum Calculator</h3>
@@ -30,15 +49,28 @@ export default function Calculator() {
                      onChange={(e)=> setSecondNum(e.target.value)}
                      />
             </div>
-            <div className="d-grid">
+            <div className="d-flex justify-content-around">
             <button type="button" 
-                    className="btn btn-primary"
+                    className="btn btn-outline-primary px-3"
                     onClick={addHandler}
                     >Add</button>
+            <button type="button" 
+                    className="btn btn-outline-primary px-3"
+                    onClick={substractHandler}
+                    >Sub</button>
+            <button type="button" 
+                    className="btn btn-outline-primary px-3"
+                    onClick={multipleHandler}
+                    >Multi</button>
+            <button type="button" 
+                    className="btn btn-outline-primary px-3"
+                    onClick={divideHandler}
+                    >Div</button>
             </div>
         </div>
-        <h5 className='mt-4 text-center'>Result : {result}</h5>
-
+        <h5 className='mt-4 text-center'>
+            {typeof(result) === "number" ? ` Result -  ${result} `: <div className='text-danger'>{result}</div>}
+        </h5>
     </div>
   )
 }
