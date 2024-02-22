@@ -36,7 +36,7 @@ export default function Calculator() {
         }
         if(firstNum && secondNum ) {
             if((+firstNum) >= (+secondNum)) {
-                setResult("" +firstNum - secondNum);
+                setResult(firstNum - secondNum);
             } else {
                 setResult("First Number must greater than Second Number");
             }
