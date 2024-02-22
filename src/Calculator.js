@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react';
 
 export default function Calculator() {
     const [firstNum, setFirstNum] = useState(0);
@@ -8,7 +8,8 @@ export default function Calculator() {
         setResult((+firstNum) + (+secondNum));
     }
   return (
-    <div className='col-6 mx-auto card p-5'>
+    <div className='col-4 mx-auto card p-5 shadow-sm'>
+        <h3 className='text-center'>Sum Calculator</h3>
         <div className="">
             <div className="mb-3">
               <label className="form-label">First Number</label>
@@ -27,12 +28,14 @@ export default function Calculator() {
                      onChange={(e)=> setSecondNum(e.target.value)}
                      />
             </div>
+            <div className="d-grid">
             <button type="submit" 
-                    className="btn btn-outline-primary form-control"
+                    className="btn btn-primary"
                     onClick={addHandler}
                     >Add</button>
+            </div>
         </div>
-        <div className='mt-4'>Result : {result}</div>
+        <h5 className='mt-4 text-center'>Result : {result}</h5>
 
     </div>
   )
