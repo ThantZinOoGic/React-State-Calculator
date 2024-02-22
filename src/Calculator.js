@@ -28,7 +28,7 @@ export default function Calculator() {
     }
   return (
     <div className='col-4 mx-auto card p-5 shadow-sm'>
-        <h3 className='text-center'>Sum Calculator</h3>
+        <h3 className='text-center'>React Calculator</h3>
         <div className="">
             <div className="mb-3">
               <label className="form-label">First Number</label>
