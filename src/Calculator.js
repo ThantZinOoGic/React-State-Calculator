@@ -3,7 +3,7 @@ import { useState } from 'react';
 export default function Calculator() {
     const [firstNum, setFirstNum] = useState(false);
     const [secondNum, setSecondNum] = useState(false);
-    const [result, setResult] = useState(0);
+    const [result, setResult] = useState("");
     const [error, setError] = useState({
         first : false,
         second : false
@@ -13,11 +13,11 @@ export default function Calculator() {
     const addHandler = () => {
         if(!firstNum){
             setError(err =>({...err, first : true}));
-            setResult(0);
+            setResult("");
         } 
         if(!secondNum) {
             setError(err =>({...err, second : true}));
-            setResult(0);
+            setResult("");
         }
         if(firstNum && secondNum ) {
             setResult((+firstNum) + (+secondNum));
@@ -28,11 +28,11 @@ export default function Calculator() {
     const substractHandler = () => {
         if(!firstNum){
             setError(err =>({...err, first : true}));
-            setResult(0);
+            setResult("");
         } 
         if(!secondNum) {
             setError(err =>({...err, second : true}));
-            setResult(0);
+            setResult("");
         }
         if(firstNum && secondNum ) {
             if((+firstNum) >= (+secondNum)) {
@@ -47,11 +47,11 @@ export default function Calculator() {
     const multipleHandler = () => {
         if(!firstNum){
             setError(err =>({...err, first : true}));
-            setResult(0);
+            setResult("");
         } 
         if(!secondNum) {
             setError(err =>({...err, second : true}));
-            setResult(0);
+            setResult("");
         }
         if(firstNum && secondNum ) {
             setResult(firstNum * secondNum);
@@ -62,11 +62,11 @@ export default function Calculator() {
     const divideHandler = () => {
             if(!firstNum){
                 setError(err =>({...err, first : true}));
-                setResult(0);
+                setResult("");
             } 
             if(!secondNum) {
                 setError(err =>({...err, second : true}));
-                setResult(0);
+                setResult("");
             }
             if(firstNum && secondNum ) {
                 if(+secondNum !== 0)
