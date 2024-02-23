@@ -107,7 +107,7 @@ export default function Calculator() {
                         setError({...error, first : false})
                     }}
                      />
-                <small className="text-danger">{error.first ?"First Number is invvalid" : ""}</small>
+                <small className="text-danger">{error.first ?"First Number is invalid" : ""}</small>
             </div>
             <div className="mb-3">
               <label  className="form-label">Second Number</label>
@@ -127,7 +127,7 @@ export default function Calculator() {
                         setError({...error, second : false})
                      }}
                      />
-                <small className="text-danger">{error.second ?"Second Number is required" : ""}</small>
+                <small className="text-danger">{error.second ?"Second Number is invalid" : ""}</small>
             </div>
             <div className="d-flex justify-content-around">
             <button type="button" 
