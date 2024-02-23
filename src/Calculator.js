@@ -83,6 +83,7 @@ export default function Calculator() {
     const inputMustNum = (e) =>  {
         if(!(/[0-9]+/.test(e.key)) && (e.key !== "Backspace")) e.preventDefault();
     }
+    
   return (
     <div className='col-4 mx-auto card p-5 shadow-sm'>
         <h3 className='text-center'>React Calculator</h3>
@@ -94,7 +95,6 @@ export default function Calculator() {
                      id="exampleInputEmail1" 
                      aria-describedby="emailHelp"
                      value={firstNum}
-                     pattern='[0-9]+'
                      onKeyDown={inputMustNum}
                      onChange={(e)=> {
                         setFirstNum(e.target.value)
@@ -109,7 +109,6 @@ export default function Calculator() {
                      className="form-control" 
                      id="exampleInputPassword1"
                      value={secondNum}
-                     pattern='[0-9]+'
                      onKeyDown={inputMustNum}
                      onChange={(e)=> {
                         setSecondNum(e.target.value);
