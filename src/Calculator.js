@@ -80,9 +80,9 @@ export default function Calculator() {
     }
 
     //input must number
-    const inputMustNum = (e) =>  {
-        if(!(/[0-9]+/.test(e.key)) && (e.key !== "Backspace")) e.preventDefault();
-    }
+    // const inputMustNum = (e) =>  {
+    //     if(!(/[0-9]+/.test(e.key)) && (e.key !== "Backspace")) e.preventDefault();
+    // }
     
   return (
     <div className='col-4 mx-auto card p-5 shadow-sm'>
@@ -95,13 +95,19 @@ export default function Calculator() {
                      id="exampleInputEmail1" 
                      aria-describedby="emailHelp"
                      value={firstNum}
-                     onKeyDown={inputMustNum}
+                     onKeyDown={(e) =>  {
+                                    if(!(/[0-9]+/.test(e.key)) && (e.key !== "Backspace")) {
+                                        setError(err =>({...err, first : true}));
+                                        e.preventDefault();
+                                        
+                                    }
+                                }}
                      onChange={(e)=> {
                         setFirstNum(e.target.value)
                         setError({...error, first : false})
                     }}
                      />
-                <small className="text-danger">{error.first ?"First Number is required" : ""}</small>
+                <small className="text-danger">{error.first ?"First Number is invvalid" : ""}</small>
             </div>
             <div className="mb-3">
               <label  className="form-label">Second Number</label>
@@ -109,7 +115,13 @@ export default function Calculator() {
                      className="form-control" 
                      id="exampleInputPassword1"
                      value={secondNum}
-                     onKeyDown={inputMustNum}
+                     onKeyDown={(e) =>  {
+                        if(!(/[0-9]+/.test(e.key)) && (e.key !== "Backspace")) {
+                            setError(err =>({...err, second : true}));
+                            e.preventDefault();
+                            
+                        }
+                    }}
                      onChange={(e)=> {
                         setSecondNum(e.target.value);
                         setError({...error, second : false})
